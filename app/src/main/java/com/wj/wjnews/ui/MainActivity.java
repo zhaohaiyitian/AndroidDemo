@@ -1,9 +1,8 @@
 package com.wj.wjnews.ui;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TabHost;
 
 import com.wj.wjnews.R;
 import com.wj.wjnews.ui.fragment.FindFragment;

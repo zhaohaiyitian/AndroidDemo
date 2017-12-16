@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     ArrayList<Integer> mData = new ArrayList<>();
     private MyPagerAdapter mAdapter;
     private int mPosition;
-    private View gridLayout;
+    private RecyclerView gridLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,15 +41,16 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         mViewPager.setAdapter(mAdapter);
         for (int i = 0; i < mData.size(); i++) {
             ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource(R.drawable.point_img_normal);
+            imageView.setImageResource(R.drawable.selector_point_bg);
+            LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(12,12);
             if (i!=0) {
-                LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(12,12);
+                imageView.setEnabled(false);
                 layoutParams.leftMargin=12;
-                imageView.setLayoutParams(layoutParams);
             }
+            imageView.setLayoutParams(layoutParams);
             mPointContainer.addView(imageView);
         }
-        mViewPager.setCurrentItem(0);
+//        mViewPager.setCurrentItem(0);
         handler.sendEmptyMessageDelayed(0,2000);
 
         return root;
@@ -57,8 +60,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     private void initView(View view) {
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
         mPointContainer = (LinearLayout) view.findViewById(R.id.pointContainer);
-//        gridLayout = view.findViewById(R.id.gridLayout);
-//        gridLayout.setLayoutManager(new GridLayoutManager(getContext(),4));
+        gridLayout = (RecyclerView) view.findViewById(R.id.gridLayout);
+        gridLayout.setLayoutManager(new GridLayoutManager(getContext(),4));
         mViewPager.addOnPageChangeListener(this);
 
     }
@@ -78,13 +81,11 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Override
     public void onPageSelected(int position) {
-//        for (int i = 0; i < mPointContainer.getChildCount(); i++) {
-        ImageView imageView = (ImageView) mPointContainer.getChildAt(position);
-        imageView.setImageResource(R.drawable.point_img_selected);
         ImageView childAt = (ImageView) mPointContainer.getChildAt(mPosition);
-        childAt.setImageResource(R.drawable.point_img_normal);
+        childAt.setEnabled(false);
         mPosition=position;
-//        }
+        ImageView imageView = (ImageView) mPointContainer.getChildAt(position);
+        imageView.setEnabled(true);
     }
 
     @Override
