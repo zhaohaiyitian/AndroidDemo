@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wj.wjnews.ui.MainActivity"
+    tools:context="com.wj.wjnews.ui.activity.MainActivity"
     android:orientation="vertical"
     android:background="#f2f2f2">
     <FrameLayout

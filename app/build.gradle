@@ -10,13 +10,44 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders=[UMENG_CHANNEL_NAME: "umeng"]
+    }
+    signingConfigs {
+        release {
+            storeFile file("./keystore.jks")
+            storePassword "wangjie"
+            keyAlias "wj"
+            keyPassword "wangjie"
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
+    productFlavors {
+        def path="./channels.txt"
+        file(path).eachLine { channel->
+            "$channel" {
+                manifestPlaceholders=[UMENG_CHANNEL_NAME:channel]
+            }
+
+        }
+//        xiaomi{
+//            manifestPlaceholders = [UMENG_CHANNEL_NAME: "xiaomi"]
+//        }
+//        baidu {
+//            manifestPlaceholders = [UMENG_CHANNEL_NAME: "baidu"]
+//        }
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders=[UMENG_CHANNEL_NAME: name]
+    }
+
 }
 
 dependencies {
@@ -31,5 +62,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.umeng.analytics:analytics:latest.integration'
     testCompile 'junit:junit:4.12'
 }

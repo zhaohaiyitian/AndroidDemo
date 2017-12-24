@@ -1,4 +1,4 @@
-package com.wj.wjnews.ui;
+package com.wj.wjnews.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
