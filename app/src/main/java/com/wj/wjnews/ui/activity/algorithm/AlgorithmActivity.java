@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.wj.wjnews.R;
 
 /**
- * 主要包含 排序 栈(用数组实现) 二叉树
+ * 主要包含 排序 队列 栈(用数组实现) 线性表 链表 二叉树 图
  */
 public class AlgorithmActivity extends AppCompatActivity implements View.OnClickListener {
     int[] number={6,4,9,2,5,8,7};
@@ -29,7 +29,6 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
          findViewById(R.id.kauisu).setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -47,14 +46,15 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
                 break;
 
         }
-
     }
 
     /**
      * 冒泡排序
+     * 原理：比较两个相邻的元素，将值大的元素交换到右端
      * 描述：
      * 外层循环控制排序趟数
      * 内层循环控制每一趟排序多少次
+     * 时间复杂度 O(n^2) 两层for循环
      */
     private void BubbleSort() {
         for (int i = 0; i < number.length-1; i++) {

@@ -40,6 +40,7 @@ public class FindFragment extends BaseFragment {
         nameList.add("设计模式");
         nameList.add("算法");
         nameList.add("NDK");
+        nameList.add("自定义控件");
         nameList.add("三方图片框架");
         nameList.add("三方网络框架");
         nameList.add("三方注解框架");
@@ -47,14 +48,13 @@ public class FindFragment extends BaseFragment {
         nameList.add("三方分享");
         nameList.add("三方支付");
         nameList.add("三方登录");
-        nameList.add("自定义控件");
         nameList.add("动画");
     }
 
     private void initView(View rootView) {
         recyclerView= (RecyclerView) rootView.findViewById(R.id.findList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new FunctionAdapter.SpaceItemDecpration(5));
         FunctionAdapter functionAdapter=new FunctionAdapter(getContext(),nameList);
         recyclerView.setAdapter(functionAdapter);
         functionAdapter.setOnItemClickListener(new FunctionAdapter.OnItemClickListener() {

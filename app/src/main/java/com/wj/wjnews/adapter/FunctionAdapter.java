@@ -1,6 +1,7 @@
 package com.wj.wjnews.adapter;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,5 +59,18 @@ public class FunctionAdapter extends RecyclerViewBaseAdapter<String> {
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener=onItemClickListener;
+    }
+
+    public static class SpaceItemDecpration extends RecyclerView.ItemDecoration {
+        private int dividerHeight;
+        public SpaceItemDecpration(int space) {
+            dividerHeight=space;
+        }
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            if (parent.getChildAdapterPosition(view)!=0) {
+                outRect.top=dividerHeight;
+            }
+        }
     }
 }
