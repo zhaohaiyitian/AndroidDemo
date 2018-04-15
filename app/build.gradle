@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders=[UMENG_CHANNEL_NAME: "umeng"]
+        manifestPlaceholders = [UMENG_CHANNEL_NAME: "umeng"]
     }
     signingConfigs {
         release {
@@ -29,10 +29,10 @@ android {
     }
 
     productFlavors {
-        def path="./channels.txt"
-        file(path).eachLine { channel->
+        def path = "./channels.txt"
+        file(path).eachLine { channel ->
             "$channel" {
-                manifestPlaceholders=[UMENG_CHANNEL_NAME:channel]
+                manifestPlaceholders = [UMENG_CHANNEL_NAME: channel]
             }
 
         }
@@ -45,7 +45,7 @@ android {
     }
 
     productFlavors.all {
-        flavor -> flavor.manifestPlaceholders=[UMENG_CHANNEL_NAME: name]
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_NAME: name]
     }
 
 }

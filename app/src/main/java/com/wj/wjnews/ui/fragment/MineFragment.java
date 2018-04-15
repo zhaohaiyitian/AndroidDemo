@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wj.wjnews.R;
+
 /**
  * Created by wj on 17-12-14.
  */
@@ -14,6 +16,7 @@ public class MineFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View rootView=inflater.inflate(R.layout.fragment_mine,container,false);
+        return rootView;
     }
 }

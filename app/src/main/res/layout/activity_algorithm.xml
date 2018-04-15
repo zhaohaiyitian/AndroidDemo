@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wj.wjnews.ui.activity.algorithm.AlgorithmActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/number1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#ff0000"
+            android:text="排序前: 6,4,9,2,5,8,7"/>
+        <TextView
+            android:id="@+id/number2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#ff0000"
+            android:text="占位"/>
+        <Button
+            android:id="@+id/maopao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="冒泡排序"/>
+        <Button
+            android:id="@+id/charu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="插入排序"/>
+        <Button
+            android:id="@+id/kauisu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="快速排序"/>
+        <Button
+            android:id="@+id/xuanze"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选择排序"/>
+    </LinearLayout>
+</ScrollView>
+
