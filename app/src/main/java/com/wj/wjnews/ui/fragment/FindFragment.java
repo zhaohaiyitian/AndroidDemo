@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.wj.wjnews.R;
 import com.wj.wjnews.adapter.FunctionAdapter;
 import com.wj.wjnews.ui.activity.algorithm.AlgorithmActivity;
+import com.wj.wjnews.ui.activity.collection.CollectionsActivity;
+import com.wj.wjnews.ui.activity.designPattern.DesignPatternActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +62,11 @@ public class FindFragment extends BaseFragment {
         functionAdapter.setOnItemClickListener(new FunctionAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(int position) {
-                if (position==2) {
+                if (position==0) {
+                    getActivity().startActivity(new Intent(getActivity(), CollectionsActivity.class));
+                }else if (position==1) {
+                    getActivity().startActivity(new Intent(getActivity(), DesignPatternActivity.class));
+                }else if (position==2) {
                     getActivity().startActivity(new Intent(getActivity(), AlgorithmActivity.class));
                 }
 
