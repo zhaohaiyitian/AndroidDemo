@@ -1,4 +1,4 @@
-package com.wj.wjnews.ui.activity.designPattern.singleton;
+package com.wj.wjnews.ui.activity.designpattern.singleton;
 
 /**
  * Created by wj on 18-4-16.

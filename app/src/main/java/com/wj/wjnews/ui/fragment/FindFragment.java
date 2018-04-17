@@ -1,22 +1,19 @@
 package com.wj.wjnews.ui.fragment;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.wj.wjnews.R;
 import com.wj.wjnews.adapter.FunctionAdapter;
 import com.wj.wjnews.ui.activity.algorithm.AlgorithmActivity;
 import com.wj.wjnews.ui.activity.collection.CollectionsActivity;
-import com.wj.wjnews.ui.activity.designPattern.DesignPatternActivity;
+import com.wj.wjnews.ui.activity.designpattern.DesignPatternActivity;
 
 import java.util.ArrayList;
 import java.util.List;

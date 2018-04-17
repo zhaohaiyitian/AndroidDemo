@@ -1,10 +1,10 @@
-package com.wj.wjnews.ui.activity.designPattern;
+package com.wj.wjnews.ui.activity.designpattern;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.wj.wjnews.R;
-import com.wj.wjnews.ui.activity.designPattern.singleton.SingletonManager;
+import com.wj.wjnews.ui.activity.designpattern.singleton.SingletonManager;
 
 public class DesignPatternActivity extends AppCompatActivity {
 

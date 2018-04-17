@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.algorithm.AlgorithmActivity" />
-        <activity android:name=".ui.activity.designPattern.DesignPatternActivity" />
+        <activity android:name=".ui.activity.designpattern.DesignPatternActivity" />
         <activity android:name=".ui.activity.collection.CollectionsActivity"></activity>
     </application>
 
