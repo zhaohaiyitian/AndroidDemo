@@ -78,6 +78,7 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
 
     /**
      * LinkedList是List接口的双向链表的实现
+     * 随机插入，删除效率高  随机访问效率低
      */
     private void linkedList() {
         LinkedList<String> linkedList=new LinkedList<>();
@@ -87,6 +88,4 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
         linkedList.add("r");
         Log.d(TAG,linkedList.toString());
     }
-
-
 }

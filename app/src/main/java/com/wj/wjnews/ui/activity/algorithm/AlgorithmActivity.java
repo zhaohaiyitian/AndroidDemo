@@ -2,6 +2,7 @@ package com.wj.wjnews.ui.activity.algorithm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.wj.wjnews.R;
  * 主要包含 排序 队列 栈(用数组实现) 线性表 链表 二叉树 图
  */
 public class AlgorithmActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String TAG="wangjie";
     int[] number={6,4,9,2,5,8,7};
     private TextView numberView;
 
@@ -33,7 +35,8 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.maopao:
-                BubbleSort();
+                //BubbleSort();
+                onewayLinkedList();
                 break;
             case R.id.charu:
                 InsertSort();
@@ -95,6 +98,17 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
         }
         builder.deleteCharAt(builder.length()-1);
         numberView.setText("排序后: "+builder);
+    }
+
+    /**
+     * 单向链表
+     */
+    private void onewayLinkedList() {
+        OneWayLinkedList<String> list= new OneWayLinkedList<>();
+        list.add("q");
+        list.add("w");
+        list.add("e");
+        list.add("r");
     }
 
 }
