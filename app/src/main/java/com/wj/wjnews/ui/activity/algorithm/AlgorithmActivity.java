@@ -35,8 +35,7 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.maopao:
-                //BubbleSort();
-                onewayLinkedList();
+                BubbleSort();
                 break;
             case R.id.charu:
                 InsertSort();
