@@ -36,7 +36,7 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     * HashMap 线程不安全(非同步) 允许null值null键 key不允许重复(如果重复会覆盖之前的元素) 不能保证元素的顺序
+     * HashMap 线程不安全(非同步) 允许null值null键 key不允许重复(如果重复会替换之前的元素(不会覆盖)) 不能保证元素的顺序
      * 数组+链表实现(jdk1.8增加了红黑树)
      * initialCapacity(初始容量)=16 , loadFactor(负载因子)=0.75
      */
@@ -45,7 +45,7 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
         hashMap.put(0,"q");
         hashMap.put(1,"w");
         hashMap.put(2,"e");
-        hashMap.put(3,"r");
+        String value = hashMap.put(3, "r");//如何key重复会返回老的值如果不重复会返回null
         Log.d(TAG,hashMap.toString());
     }
 
