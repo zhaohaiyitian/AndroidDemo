@@ -9,11 +9,20 @@ import com.wj.wjnews.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
+/**
+ * HashMap,TreeMap,LinkedHashMap, HashTable
+ *
+ * LinkedList, ArrayList
+ *
+ * TreeSet, HashSet
+ */
 public class CollectionsActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG="wangjie";
     @Override
@@ -34,11 +43,11 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
                 hashMap();
                 break;
         }
-
     }
 
     /**
-     * HashMap 线程不安全(非同步) 允许null值null键 key不允许重复(如果重复会替换之前的元素(不会覆盖)) 不能保证元素的顺序
+     * 不能保证元素的顺序
+     * HashMap 线程不安全(非同步) 允许null值null键 key不允许重复(如果重复会替换之前的元素(不会覆盖))
      * 数组+链表实现(jdk1.8增加了红黑树)
      * initialCapacity(初始容量)=16 , loadFactor(负载因子)=0.75
      */
@@ -66,6 +75,7 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
+     * 元素有序
      *TreeMap的实现就是一个红黑树
      * 根据键进行排序(升序)
      */
@@ -118,5 +128,36 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
         linkedList.add("e");
         linkedList.add("r");
         Log.d(TAG,linkedList.toString());
+    }
+
+    /**
+     *不能保证元素的迭代顺序
+     *不包含重复元素,最多有一个null元素
+     * HashSet实现Set接口
+     * 底层使用HashMap来保存HashSet中的所有元素
+     * 元素去重
+     */
+    private void hashSet() {
+        HashSet<String> hashSet=new HashSet<>();
+        hashSet.add("q");
+        hashSet.add("w");
+        hashSet.add("e");
+        hashSet.add("r");
+        Log.d(TAG,hashSet.toString());
+    }
+
+
+    /**
+     *TreeSet实现了SortedSet接口
+     *TreeSet可以确保集合元素处于排序状态(升序)
+     * 元素去重
+     */
+    private void treeSet() {
+        TreeSet<String> treeSet=new TreeSet<>();
+        treeSet.add("q");
+        treeSet.add("w");
+        treeSet.add("e");
+        treeSet.add("r");
+        Log.d(TAG,treeSet.toString());
     }
 }
