@@ -48,10 +48,10 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     private void download() {
-
-        HttpManager.getInstance().asyncRequest("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525074695796&di=d74fe5730a38893160397e6e097bb852&imgtype=0&src=http%3A%2F%2Fimg1c.xgo-img.com.cn%2Fpics%2F1686%2F1685723.jpg", new DownloadCallBack() {
+        DownloadManager.getInstance().download("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525074695796&di=d74fe5730a38893160397e6e097bb852&imgtype=0&src=http%3A%2F%2Fimg1c.xgo-img.com.cn%2Fpics%2F1686%2F1685723.jpg", new DownloadCallBack() {
             @Override
             public void success(File file) {
+                Logger.d("wang  ",file.getAbsolutePath());
                 final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                 runOnUiThread(new Runnable() {
                     @Override
@@ -59,13 +59,11 @@ public class DownloadActivity extends AppCompatActivity {
                         imageView.setImageBitmap(bitmap);
                     }
                 });
-
-                Logger.d("wangjie","success: "+file.getAbsoluteFile());
             }
 
             @Override
             public void fail(int errorCode, String errorMessage) {
-                Logger.d("wangjie","fail: "+errorCode+" : "+errorMessage);
+                Logger.d("wangjie","fail " +errorCode+" "+errorMessage);
             }
 
             @Override
@@ -73,6 +71,30 @@ public class DownloadActivity extends AppCompatActivity {
 
             }
         });
+//        HttpManager.getInstance().asyncRequest("", new DownloadCallBack() {
+//            @Override
+//            public void success(File file) {
+//                final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        imageView.setImageBitmap(bitmap);
+//                    }
+//                });
+//
+//                Logger.d("wangjie","success: "+file.getAbsoluteFile());
+//            }
+//
+//            @Override
+//            public void fail(int errorCode, String errorMessage) {
+//                Logger.d("wangjie","fail: "+errorCode+" : "+errorMessage);
+//            }
+//
+//            @Override
+//            public void progress(int progress) {
+//
+//            }
+//        });
 
 //        OkHttpClient okHttpClient=new OkHttpClient();
 //        Request request=new Request.Builder()

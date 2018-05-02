@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -18,12 +17,13 @@ import okhttp3.Response;
  */
 
 public class HttpManager {
-    private static final int NETWPRK_CODE = 1;
+    public static final int NETWPRK_CODE = 1;
+    public static final int HTTP_LENGTH_ERROR_CODE=2;
     private static HttpManager instance=new HttpManager();
     private Context mContext;
-    private OkHttpClient client=new OkHttpClient();
+    private OkHttpClient mClient=new OkHttpClient();
     private HttpManager(){
-        client=new OkHttpClient();
+        mClient=new OkHttpClient();
     }
     public static HttpManager getInstance() {
         return instance;
@@ -33,9 +33,38 @@ public class HttpManager {
         this.mContext=context;
     }
 
+    public Response syncRequest(String url) {
+        Request request = new Request.Builder().url(url).build();
+        try {
+            return mClient.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Response syncRequestByRange(String url,long start,long end) {
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Range","bytes="+start+"-"+end)
+                .build();
+        try {
+            return mClient.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void asyncRequest(String url,Callback callback) {
+        Request request = new Request.Builder().url(url).build();
+        mClient.newCall(request).enqueue(callback);
+    }
+
     public void asyncRequest(final String url, final DownloadCallBack callback) {
-        Request request=new Request.Builder().url(url).build();
-        Call call = client.newCall(request);
+        Request request=new Request.Builder()
+                .url(url).build();
+        Call call = mClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -62,7 +91,5 @@ public class HttpManager {
 
             }
         });
-
     }
-
 }
