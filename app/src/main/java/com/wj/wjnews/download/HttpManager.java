@@ -19,6 +19,7 @@ import okhttp3.Response;
 public class HttpManager {
     public static final int NETWPRK_CODE = 1;
     public static final int HTTP_LENGTH_ERROR_CODE=2;
+    public static final int TASK_RUNNING_ERROR_CODE=3;
     private static HttpManager instance=new HttpManager();
     private Context mContext;
     private OkHttpClient mClient=new OkHttpClient();

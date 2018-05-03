@@ -7,6 +7,7 @@ import com.wj.wjnews.utils.Md5Util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 
 /**
  * Created by wj on 18-4-30.
@@ -20,7 +21,6 @@ public class FileStorageManager {
     public static FileStorageManager getInstance() {
         return instance;
     }
-
     public void init(Context context) {
         this.mContext=context;
     }

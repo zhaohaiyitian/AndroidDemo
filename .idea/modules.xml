@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WJNews.iml" filepath="$PROJECT_DIR$/WJNews.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbgenerate/dbgenerate.iml" filepath="$PROJECT_DIR$/dbgenerate/dbgenerate.iml" />
     </modules>
   </component>
 </project>
