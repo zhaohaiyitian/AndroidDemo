@@ -1,4 +1,4 @@
-package com.wj.wjnews.download;
+package com.wj.wjnews.download.http;
 
 import java.io.File;
 

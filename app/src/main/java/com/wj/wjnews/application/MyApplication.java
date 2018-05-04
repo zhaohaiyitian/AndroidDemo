@@ -2,11 +2,10 @@ package com.wj.wjnews.application;
 
 import android.app.Application;
 
-import com.wj.wjnews.download.FileStorageManager;
-import com.wj.wjnews.download.HttpManager;
-import com.wj.wjnews.utils.Logger;
-
-import java.io.File;
+import com.facebook.stetho.Stetho;
+import com.wj.wjnews.download.db.DownloadHelper;
+import com.wj.wjnews.download.file.FileStorageManager;
+import com.wj.wjnews.download.http.HttpManager;
 
 /**
  * Created by wj on 18-4-30.
@@ -19,5 +18,7 @@ public class MyApplication extends Application {
         super.onCreate();
         FileStorageManager.getInstance().init(this);
         HttpManager.getInstance().init(this);
+        DownloadHelper.getInstance().init(this);
+        Stetho.initializeWithDefaults(this);
     }
 }

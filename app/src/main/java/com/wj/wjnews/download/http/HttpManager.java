@@ -1,6 +1,8 @@
-package com.wj.wjnews.download;
+package com.wj.wjnews.download.http;
 
 import android.content.Context;
+
+import com.wj.wjnews.download.file.FileStorageManager;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,5 +1,7 @@
 package com.wj.wjnews.download;
 
+import com.wj.wjnews.download.http.DownloadCallBack;
+
 /**
  * Created by wj on 18-4-30.
  */

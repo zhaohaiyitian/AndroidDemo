@@ -1,4 +1,4 @@
-package com.wj.wjnews.download;
+package com.wj.wjnews.download.file;
 
 import android.content.Context;
 import android.os.Environment;
@@ -7,7 +7,6 @@ import com.wj.wjnews.utils.Md5Util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 
 /**
  * Created by wj on 18-4-30.

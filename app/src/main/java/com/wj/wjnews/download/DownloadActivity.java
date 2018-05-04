@@ -1,36 +1,32 @@
 package com.wj.wjnews.download;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.wj.wjnews.R;
+import com.wj.wjnews.download.http.DownloadCallBack;
 import com.wj.wjnews.utils.Logger;
 
 import java.io.File;
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class DownloadActivity extends AppCompatActivity {
 
     private ImageView imageView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
         imageView = (ImageView) findViewById(R.id.image);
+        progressBar = (ProgressBar) findViewById(R.id.progress);
         findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,17 +44,25 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     private void download() {
-        DownloadManager.getInstance().download("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525074695796&di=d74fe5730a38893160397e6e097bb852&imgtype=0&src=http%3A%2F%2Fimg1c.xgo-img.com.cn%2Fpics%2F1686%2F1685723.jpg", new DownloadCallBack() {
+
+        DownloadManager.getInstance().download("http://shouji.360tpcdn.com/160901/84c090897cbf0158b498da0f42f73308/com.icoolme.android.weather_2016090200.apk", new DownloadCallBack() {
+            int count=0;
             @Override
-            public void success(File file) {
-                Logger.d("wang  ",file.getAbsolutePath());
-                final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageView.setImageBitmap(bitmap);
-                    }
-                });
+            public void success(File file) {//success会回调两次????????????????
+                if (count<1) {
+                    count++;
+                    return;
+                }
+                Logger.d("wangjie","success "+file.getAbsolutePath());
+                installApk(file);
+
+//                final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        imageView.setImageBitmap(bitmap);
+//                    }
+//                });
             }
 
             @Override
@@ -68,6 +72,8 @@ public class DownloadActivity extends AppCompatActivity {
 
             @Override
             public void progress(int progress) {
+                Logger.d("zhongguo","progress "+progress);
+                progressBar.setProgress(progress);
 
             }
         });
@@ -119,5 +125,12 @@ public class DownloadActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+    }
+
+    private void installApk(File file) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setDataAndType(Uri.parse("file://" + file.getAbsoluteFile().toString()), "application/vnd.android.package-archive");
+        startActivity(intent);
     }
 }
