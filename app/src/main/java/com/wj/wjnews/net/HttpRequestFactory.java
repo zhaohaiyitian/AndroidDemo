@@ -11,5 +11,5 @@ import java.net.URI;
  */
 
 public interface HttpRequestFactory {
-    HttpRequest createHttpRequest(URI uri, HttpMethod method) ;
+    HttpRequest createHttpRequest(URI uri, HttpMethod method) throws IOException;
 }

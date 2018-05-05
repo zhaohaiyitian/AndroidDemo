@@ -35,7 +35,7 @@ public abstract class AbstractHttpResponse implements HttpResponse {
         return body;//////
     }
 
-    protected abstract InputStream getBodyInternal();
+    protected abstract InputStream getBodyInternal() throws IOException;
     protected abstract void closeInternal();
     InputStream getBodyGzip(InputStream body)throws IOException {
         if (this.mGzipInputStream==null) {

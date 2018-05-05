@@ -4,6 +4,7 @@ import com.wj.wjnews.net.http.HttpMethod;
 import com.wj.wjnews.net.http.HttpRequest;
 import com.wj.wjnews.utils.StringUtil;
 
+import java.io.IOException;
 import java.net.URI;
 
 /**
@@ -19,11 +20,11 @@ public class HttpRequestProvider {
         if (OKHTTP_REQUEST) {
             mHttpRequestFactory=new OkHttpRequestFactory();
         } else {
-
+            mHttpRequestFactory=new OriginHttpRequestFactory();
         }
     }
 
-    public HttpRequest getHttpRequest(URI uri, HttpMethod method)  {
+    public HttpRequest getHttpRequest(URI uri, HttpMethod method) throws IOException {
         return mHttpRequestFactory.createHttpRequest(uri,method);
     }
 
