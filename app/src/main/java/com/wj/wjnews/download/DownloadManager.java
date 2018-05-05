@@ -30,9 +30,10 @@ import okhttp3.Response;
  */
 
 public class DownloadManager {
-    private static DownloadManager instance=new DownloadManager();
-    private static final ExecutorService localProgressPool= Executors.newFixedThreadPool(1);
-    private static final int MAX_THREAD=2;
+    private static DownloadManager instance;
+    public static int localProgressSize=1;
+    private static final ExecutorService localProgressPool= Executors.newFixedThreadPool(localProgressSize);
+    public static final int MAX_THREAD=2;
     private HashSet<DownloadTask> mHashSet=new HashSet<>();
     private static final ThreadPoolExecutor sThreadPool=new ThreadPoolExecutor(
             MAX_THREAD, MAX_THREAD, 60, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(),
@@ -50,8 +51,23 @@ public class DownloadManager {
     private DownloadManager() {
     }
     public static DownloadManager getInstance() {
+        if (instance==null) {
+            synchronized(DownloadManager.class) {
+                if (instance==null) {
+                    instance=new DownloadManager();//在有些情况下不是原子性的，可能会报空指针
+                }
+            }
+        }
         return instance;
     }
+
+    public static class Holder {
+        private static DownloadManager instance=new DownloadManager();
+        public static DownloadManager getInstance() {
+            return instance;
+        }
+    }
+
     private void finish(DownloadTask task) {
         mHashSet.remove(task);
     }

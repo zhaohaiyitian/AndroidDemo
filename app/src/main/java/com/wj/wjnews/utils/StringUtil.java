@@ -24,4 +24,14 @@ public class StringUtil {
         }
         return true;
     }
+
+    public static boolean isExit(String className,ClassLoader loader) {
+        try {
+            Class.forName(className);
+            return true;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
