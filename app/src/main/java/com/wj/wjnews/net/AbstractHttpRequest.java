@@ -29,7 +29,7 @@ public abstract class AbstractHttpRequest implements HttpRequest{
         if (isGzip()) {
             return getGzipOutStream(body);
         }
-        return null;
+        return body;///////////////////
     }
 
     private OutputStream getGzipOutStream(OutputStream body) {

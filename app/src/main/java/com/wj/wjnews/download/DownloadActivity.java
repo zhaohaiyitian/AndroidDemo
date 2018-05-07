@@ -12,9 +12,14 @@ import android.widget.ProgressBar;
 
 import com.wj.wjnews.R;
 import com.wj.wjnews.download.http.DownloadCallBack;
+import com.wj.wjnews.net.service.WjApiProvider;
+import com.wj.wjnews.net.service.WjRequest;
+import com.wj.wjnews.net.service.WjResponse;
 import com.wj.wjnews.utils.Logger;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DownloadActivity extends AppCompatActivity {
 
@@ -44,39 +49,53 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     private void download() {
-
-        DownloadManager.getInstance().download("http://shouji.360tpcdn.com/160901/84c090897cbf0158b498da0f42f73308/com.icoolme.android.weather_2016090200.apk", new DownloadCallBack() {
-            int count=0;
+        Map<String, String> map = new HashMap<>();
+        map.put("username","admin");
+        map.put("password","admin");
+        WjApiProvider.hello("http://www.baidu.com", null, new WjResponse<String>() {
             @Override
-            public void success(File file) {//success会回调两次????????????????
-                if (count<1) {
-                    count++;
-                    return;
-                }
-                Logger.d("wangjie","success "+file.getAbsolutePath());
-                installApk(file);
-
-//                final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        imageView.setImageBitmap(bitmap);
-//                    }
-//                });
+            public void success(WjRequest request, String data) {
+                System.out.println(data);
             }
 
             @Override
-            public void fail(int errorCode, String errorMessage) {
-                Logger.d("wangjie","fail " +errorCode+" "+errorMessage);
-            }
-
-            @Override
-            public void progress(int progress) {
-                Logger.d("zhongguo","progress "+progress);
-                progressBar.setProgress(progress);
+            public void fail(int errorCode, String errorMsg) {
+                System.out.println(errorCode+errorMsg);
 
             }
         });
+//        DownloadManager.getInstance().download("http://shouji.360tpcdn.com/160901/84c090897cbf0158b498da0f42f73308/com.icoolme.android.weather_2016090200.apk", new DownloadCallBack() {
+//            int count=0;
+//            @Override
+//            public void success(File file) {//success会回调两次????????????????
+//                if (count<1) {
+//                    count++;
+//                    return;
+//                }
+//                Logger.d("wangjie","success "+file.getAbsolutePath());
+//                installApk(file);
+//
+////                final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+////                runOnUiThread(new Runnable() {
+////                    @Override
+////                    public void run() {
+////                        imageView.setImageBitmap(bitmap);
+////                    }
+////                });
+//            }
+//
+//            @Override
+//            public void fail(int errorCode, String errorMessage) {
+//                Logger.d("wangjie","fail " +errorCode+" "+errorMessage);
+//            }
+//
+//            @Override
+//            public void progress(int progress) {
+//                Logger.d("zhongguo","progress "+progress);
+//                progressBar.setProgress(progress);
+//
+//            }
+//        });
 //        HttpManager.getInstance().asyncRequest("", new DownloadCallBack() {
 //            @Override
 //            public void success(File file) {

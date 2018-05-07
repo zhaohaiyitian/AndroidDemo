@@ -54,6 +54,14 @@ public enum  HttpStatus {
         this.mMassage = mMassage;
     }
 
+    public  boolean isSuccess() {
+        int v=status/100;
+        if (v==2) {
+            return true;
+        }
+        return false;
+    }
+
     public static HttpStatus getValue(int value) {
         for (HttpStatus httpStatus : values()) {
             if (value==httpStatus.status) {
