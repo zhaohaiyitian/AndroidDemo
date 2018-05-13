@@ -27,7 +27,9 @@ public class Request {
         this.mMethod=builder.mMethod;
         this.mHeader=builder.mHeader;
         this.data=encodeParam(builder.mFormParams);
+        if (builder.mFormParams.size()>0) {
 
+        }
     }
 
     public static class Builder {
@@ -36,23 +38,23 @@ public class Request {
         private HttpHeader mHeader;
         private Map<String,String> mFormParams=new HashMap<>();
         private Map<String,String> mQueryParams=new HashMap<>();
-        private Builder url(String url) {
+        public Builder url(String url) {
             this.mUrl=url;
             return this;
         }
-        private Builder addMethod(HttpMethod method) {
+        public Builder addMethod(HttpMethod method) {
             this.mMethod=method;
             return this;
         }
-        private Builder addHeader(HttpHeader header) {
+        public Builder addHeader(HttpHeader header) {
             this.mHeader=header;
             return this;
         }
-        private Builder addFormParam(String key,String value) {
+        public Builder addFormParam(String key,String value) {
             mFormParams.put(key,value);
             return this;
         }
-        private Builder addQueryParam(String key,String value) {
+        public Builder addQueryParam(String key,String value) {
             mQueryParams.put(key,value);
             return this;
         }
@@ -90,7 +92,7 @@ public class Request {
         return mUrl;
     }
 
-    public HttpMethod getmMethod() {
+    public HttpMethod getMethod() {
         return mMethod;
     }
 

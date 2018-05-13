@@ -8,7 +8,7 @@ import okhttp3.Response;
  */
 
 public interface CallBack<T> {
-    void success(com.wj.wjnews.net.http.Response<T> response);
-    void fail(String errorMsg);
+    void onSuccess(com.wj.wjnews.net.http.Response<T> response);
+    void onFailure(String errorMsg);
 
 }

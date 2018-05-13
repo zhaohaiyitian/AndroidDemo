@@ -13,4 +13,10 @@ public interface HttpRequest extends Header {
     URI getUri();
     OutputStream getBody();
     HttpResponse execute() throws IOException;
+
+    /**
+     * 设置http请求头
+     * @param httpHeader
+     */
+    void setHeaders(HttpHeader httpHeader);
 }
