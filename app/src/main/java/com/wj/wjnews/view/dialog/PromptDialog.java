@@ -18,7 +18,7 @@ public class PromptDialog {
     private static PromptDialog instance;
     private Dialog dialog;
     private TextView title,content;
-    private Button ok,cancel;
+    private TextView ok,cancel;
     private PromptDialog(){}
     public static PromptDialog getInstance() {
         if (instance==null) {
@@ -73,8 +73,8 @@ public class PromptDialog {
         View promptView=inflater.inflate(R.layout.prompt_dialog,null);
         title= (TextView) promptView.findViewById(R.id.prompt);
         content=(TextView)promptView.findViewById(R.id.content);
-        ok= (Button) promptView.findViewById(R.id.ok);
-        cancel= (Button) promptView.findViewById(R.id.cancel);
+        ok= (TextView) promptView.findViewById(R.id.ok);
+        cancel= (TextView) promptView.findViewById(R.id.cancel);
         return instance;
     }
 

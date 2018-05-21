@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.wj.wjnews.R;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,6 +16,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * HashMap,TreeMap,LinkedHashMap, HashTable
@@ -30,6 +33,7 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collections);
         initView();
+        EventBus.getDefault().register(this);
     }
 
     private void initView() {
@@ -44,6 +48,23 @@ public class CollectionsActivity extends AppCompatActivity implements View.OnCli
                 break;
         }
     }
+
+    public void onEvent(String str) {
+
+    }
+
+    public void onEventMainThread(String str) {
+
+    }
+
+    public void onEventBackgroundThread(String str) {
+
+    }
+
+    public void onEventAsync(String str) {
+
+    }
+
 
     /**
      * 不能保证元素的顺序

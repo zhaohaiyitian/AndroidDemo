@@ -32,36 +32,7 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
 
-//        OkHttpClient client=new OkHttpClient();
-//
-//        OkHttpRequest request=new OkHttpRequest(client, HttpMethod.GET,"http://www.imooc.com");
-//        HttpResponse response = request.execute();
-//        String content=null;
-//        BufferedReader reader=new BufferedReader(new InputStreamReader(response.getBody()));
-//        while ((content=reader.readLine())!=null) {
-//            System.out.println(content);
-//        }
-//        response.close();
 
-        Request request=new Request.Builder().url("")
-                .addFormParam("id","asd")
-                .addFormParam("as","asd")
-                .addMethod(HttpMethod.POST)
-                .build();
-        List<Convert> converts=new ArrayList<>();
-        converts.add(new JsonConvert());
-        HttpCall call=new HttpCall(request, Executors.newCachedThreadPool(), converts, new HttpRequestProvider(), new CallBack() {
-            @Override
-            public void onSuccess(Response response) {
-
-            }
-
-            @Override
-            public void onFailure(String errorMsg) {
-
-            }
-        });
-        call.invoke().get();
 
     }
 }

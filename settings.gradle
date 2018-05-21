@@ -1,1 +1,6 @@
-include ':app', ':dbgenerate'
+include ':app'
+
+if(hasProperty('isLoadDbGenerate')?isLoadDbGenerate.toBoolean():false) {
+    include ':dbgenerate'
+}
+print "gradle 初始化阶段开始执行"

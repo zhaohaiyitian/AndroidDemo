@@ -15,6 +15,7 @@ import com.wj.wjnews.ui.activity.algorithm.AlgorithmActivity;
 import com.wj.wjnews.ui.activity.collection.CollectionsActivity;
 import com.wj.wjnews.ui.activity.designpattern.DesignPatternActivity;
 
+
 import java.util.ArrayList;
 import java.util.List;
 

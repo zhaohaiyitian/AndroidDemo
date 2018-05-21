@@ -1,7 +1,10 @@
 apply plugin: 'com.android.application'
+//def mCompileSdkVersion=25
+//def mLibAndroidDesign='com.android.support:design:25.1.0'
 
 android {
-    compileSdkVersion 25
+    //compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion mCompileSdkVersion.toInteger()
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "com.wj.wjnews"
@@ -12,19 +15,19 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //manifestPlaceholders = [UMENG_CHANNEL_NAME: "umeng"]
     }
-    signingConfigs {
-        release {
-            storeFile file("./keystore.jks")
-            storePassword "wangjie"
-            keyAlias "wj"
-            keyPassword "wangjie"
-        }
-    }
+//    signingConfigs {
+//        release {
+//            storeFile file("./keystore.jks")
+//            storePassword "wangjie"
+//            keyAlias "wj"
+//            keyPassword "wangjie"
+//        }
+//    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
         }
     }
 
@@ -47,17 +50,38 @@ android {
 //    productFlavors.all {
 //        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_NAME: name]
 //    }
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs=['libs']//修改so库存放位置
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs=['src/main/res',
+                         'src/main/res-ad',
+                         'src/main/res-player']
+        }
+    }
+}
+this.android.sourceSets {
 
 }
-
+//为应用程序添加第三方依赖
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support'//排除依赖
+        exclude module: 'support-annotations'
+       // transitive false//传递依赖 false为禁止传递依赖
     })
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.1.0'
+    compile this.rootProject.libAndroidDesign
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
@@ -67,5 +91,273 @@ dependencies {
     compile 'com.github.lzyzsd:jsbridge:1.0.4'
     compile 'org.greenrobot:greendao:3.2.0'
     compile 'com.facebook.stetho:stetho:1.3.1'
+//    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'de.greenrobot:eventbus:2.4.0'
     testCompile 'junit:junit:4.12'
+//    provided 'xxx' //资源不会被加载到apk中 可以减小apk的体积
 }
+
+//copy {
+//    from file('build/outputs/apk/')
+//    into getRootProject().getBuildDir().path+'/apk/'
+//}
+
+//copy {
+//    from file('channels.txt')
+//    into getRootProject().getBuildDir()
+//    exclude {//排除不想拷贝的文件夹或文件
+//    }
+//    rename {//重命名
+//    }
+//}
+//对文件树进行遍历
+//fileTree('build/outputs/apk/') { FileTree fileTree ->
+//    fileTree.visit { FileTreeElement element ->
+//        println "the file name is "+element.file.name
+//        copy {
+//            from element.file
+//            into getRootProject().getBuildDir().path+'/test/'
+//        }
+//    }
+//
+//}
+//this.tasks.create(name:'apkcopy') {//执行外部命令
+//    doLast {
+//        //gradle的执行阶段去执行
+//        def sourcePath=this.buildDir.path+'/outputs/apk'
+//        def destionPath='/home/wj/'
+//        def command="mv -f ${sourcePath} ${destionPath}"
+//        exec {
+//            try{
+//                executable 'bash'
+//                args '-c', command
+//                print "the commond exec is success"
+//            } catch (GradleException e) {
+//                print "the commond exec is failed"
+//            }
+//        }
+//    }
+//}
+//直接通过task函数去创建
+//task helloTask(group: 'wj',description:"task study") {
+//    println 'i am hello Task'
+//    doFirst {
+//        println "the task group is "+group
+//    }
+//}
+//helloTask.doFirst {
+//    println " the  description is "+description//先执行
+//}
+//
+///**
+// * doFirst doLast 在gradle执行阶段执行
+// */
+////通过TaskContainer创建Task
+//this.tasks.create(name:'helloTask2') {
+//    setGroup('wj')
+//    setDescription('task study')
+//    println 'i am hello Task2'
+//}
+
+//计算build执行时长
+//def startBuildTime,endBuidTime
+//this.afterEvaluate { Project project ->
+//    // 保证要找的Task配置完毕
+//    def preBuildTask=project.tasks.getByName('preBuild')
+//    preBuildTask.doFirst {
+//        startBuildTime=System.currentTimeMillis()
+//        println 'the start time is '+startBuildTime
+//    }
+//    def buildTask=project.tasks.getByName('build')
+//    buildTask.doLast {
+//        endBuidTime=System.currentTimeMillis()
+//        println "the build time is ${endBuidTime-startBuildTime}"
+//    }
+//}
+//  <<等同于doLast
+//task lib1  {
+//    doLast {
+//        println 'lib1'
+//    }
+//}
+//
+//task lib2 {
+//    doLast {
+//        println 'lib2'
+//    }
+//}
+//
+//task nolib {
+//    doLast {
+//        println 'noLib'
+//    }
+//}
+//
+//task taskX {
+//    doLast {
+//        println 'taskX'
+//    }
+//}
+//task taskY {
+//    doLast {
+//        println 'taskY'
+//    }
+//}
+//task taskZ {
+//    dependsOn this.tasks.findAll { task  ->
+//        return task.name.startsWith('lib')
+//    }
+//    doLast {
+//        println 'taskZ'
+//    }
+//}
+
+//task handleReleaseFile {
+//    def srcFile=file('releases.xml')
+//    def destDir=new File(this.buildDir,'generated/release/')
+//    doLast {
+//        println "开始解析xml文件"
+//        destDir.mkdir()
+//        def releases=new XmlParser().parse(srcFile)
+//        releases.release.each {releaseNode ->
+//            //解析每个release节点的内容
+//            def versionCode=releaseNode.versionCode.text()
+//            def versionName=releaseNode.versionName.text()
+//            def versionInfo=releaseNode.versionInfo.text()
+//             //创建文件并写入节点数据
+//            def destFile=new File(destDir,"release-${versionName}.text")
+//            destFile.withPrintWriter {writer->
+//                writer.write("${versionName}->${versionCode}->${versionInfo}")
+//            }
+//        }
+//    }
+//}
+//
+//task handleReleaseFileTest(dependsOn:handleReleaseFile) {
+//    def dir=fileTree(this.buildDir.path+"generated/release/")
+//    doLast {
+//        dir.each {
+//            println " the file name is" +it
+//        }
+//        println "输出完成......"
+//    }
+//}
+//
+//task输入输出
+ext {
+    versionName='1.2.0'
+    versionCode='120'
+    versionInfo='App update tinker'
+    destFile=file('releases.xml')
+    if (destFile!=null&&!destFile.exists()) {
+        destFile.createNewFile()
+    }
+}
+
+this.project.afterEvaluate {project ->
+    def buildTask=project.tasks.getByName('build')
+    if (buildTask == null) {
+        throw GradleException('the buildtask is not found')
+    }
+    buildTask.doLast {
+        writeTask.execute()
+    }
+}
+
+task writeTask {
+    //为task指定输入
+    inputs.property('versionCode',this.versionCode) //key value
+    inputs.property('versionName',this.versionName)
+    inputs.property('versionInfo',this.versionInfo)
+    //为task指定输出
+    outputs.file destFile
+    doLast {
+        def data=inputs.getProperties()
+        File file=outputs.getFiles().getSingleFile()
+        //将实体对象转化为xml格式数据
+        //将map转化为实体对象
+        def versionMsg=new VersionMsg(data)
+        def sw=new StringWriter()
+        def xmlBuilder=new groovy.xml.MarkupBuilder(sw)
+        if (file != null&&file.text.size()<=0) {
+            // 文件中没有内容
+            xmlBuilder.releases {
+                release {
+                    versionCode(versionMsg.versionCode)
+                    versionName(versionMsg.versionName)
+                    versionInfo(versionMsg.versionInfo)
+                }
+            }
+            file.withWriter {writer->
+                writer.append(sw.toString())
+            }
+        } else {
+            //已有版本信息
+            xmlBuilder.release {
+                versionCode(versionMsg.versionCode)
+                versionName(versionMsg.versionName)
+                versionInfo(versionMsg.versionInfo)
+            }
+            //将生成的xml数据插入到根节点之前
+            def lines=file.readLines()
+            def length=lines.size()-1
+            file.withWriter {writer ->
+                lines.eachWithIndex { String line, int index ->
+                    if (index!=length) {
+                        writer.append(line+'\r\n')
+                    } else if(index==length) {
+                        writer.append('\r\n'+sw.toString()+'\r\n')
+                        writer.append(lines.get(length))
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+class VersionMsg {
+    String versionCode
+    String versionName
+    String versionInfo
+}
+task readTask {
+    //指定输入文件为上一个task的输出
+    inputs.file this.destFile
+    doLast {
+        //读取输入文件的内容并显示
+        def file=inputs.files.singleFile
+        println file.text
+    }
+}
+//
+//task taskTest {
+//    dependsOn writeTask,readTask
+//    doLast {
+//        println "输入输出任务结束"
+//    }
+//}
+
+//task taskX {
+//    doLast {
+//        println 'taskX'
+//    }
+//}
+//task taskY {
+//    mustRunAfter taskX
+//    doLast {
+//        println 'taskY'
+//    }
+//}
+//task taskZ {
+//    mustRunAfter taskY
+//    doLast {
+//        println 'taskZ'
+//    }
+//}
+
+
+
+
+
+

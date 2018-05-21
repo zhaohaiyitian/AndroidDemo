@@ -73,13 +73,13 @@ public class MethodAnnotationProcess {
         ParamAnnotationProcess process=null;
         if (annotation instanceof Field) {
             Field field=(Field)annotation;
-            process=new FieldParamAnnotationProcess(mBuilder,field.value(),field.encoded());
+//            process=new FieldParamAnnotationProcess(mBuilder,field.value(),field.encoded());
         } else if (annotation instanceof FieldMap) {
             FieldMap fieldMap=(FieldMap)annotation;
 
         } else if (annotation instanceof Query) {
             Query query=(Query)annotation;
-            process=new QueryParamAnnotationProcess(mBuilder,query.value(),query.encoded());
+//            process=new QueryParamAnnotationProcess(mBuilder,query.value(),query.encoded());
         } else if (annotation instanceof QueryMap) {
             QueryMap queryMap=(QueryMap)annotation;
 
@@ -88,7 +88,6 @@ public class MethodAnnotationProcess {
 
         } else if (annotation instanceof Body) {
             Body body=(Body)annotation;
-
         }
         mAnnotationProcess.add(process);
     }
