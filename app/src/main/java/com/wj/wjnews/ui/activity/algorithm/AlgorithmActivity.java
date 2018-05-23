@@ -41,7 +41,8 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
                 InsertSort();
                 break;
             case R.id.kauisu:
-                RapidSort();
+                int[] a={1,6,2,4,8,4};
+                quickSort(a,0,a.length);
                 break;
             case R.id.xuanze:
                 SelectSort();
@@ -78,8 +79,48 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
     }
     /**
      * 快速排序
+     * 定义i=0，j=a.length-1，i为第一个数的下标，j为最后一个数下标
+     * 从数组的最后一个数Aj从右往左找，找到第一小于key的数，记为Aj
+     * 从数组的第一个数Ai 从左往右找，找到第一个大于key的数，记为Ai
+     * 交换Ai 和Aj
+     * 重复这个过程，直到 i=j
+     * 调整key的位置，把A[i]和key交换
      */
-    private void RapidSort() {
+    private void quickSort(int[] a,int low,int high) {
+        //1,找到递归算法的出口
+        if( low > high) {
+            return;
+        }
+        //2, 存
+        int i = low;
+        int j = high;
+        //3,key
+        int key = a[ low ];
+        //4，完成一趟排序
+        while( i< j) {
+            //4.1 ，从右往左找到第一个小于key的数
+            while(i<j && a[j] > key){
+                j--;
+            }
+            // 4.2 从左往右找到第一个大于key的数
+            while( i<j && a[i] <= key) {
+                i++;
+            }
+            //4.3 交换
+            if(i<j) {
+                int p = a[i];
+                a[i] = a[j];
+                a[j] = p;
+            }
+        }
+        // 4.4，调整key的位置
+        int p = a[i];
+        a[i] = a[low];
+        a[low] = p;
+        //5, 对key左边的数快排
+        quickSort(a, low, i-1 );
+        //6, 对key右边的数快排
+        quickSort(a, i+1, high);
 
     }
 
@@ -109,5 +150,4 @@ public class AlgorithmActivity extends AppCompatActivity implements View.OnClick
         list.add("e");
         list.add("r");
     }
-
 }
