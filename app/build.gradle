@@ -356,6 +356,15 @@ task readTask {
 //    }
 //}
 
+this.afterEvaluate {
+    this.android.applicationVariants.all {variant ->
+       def output= variant.outputs.first()
+        def apkName="app-${variant.baseName}-${variant.versionName}.apk"
+        output.outputFile=new File(output.outputFile.parent,apkName)
+        println output.outputFile.name
+    }
+}
+
 
 
 

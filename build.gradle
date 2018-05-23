@@ -35,7 +35,6 @@ this.beforeEvaluate {
  */
 this.afterEvaluate {
     println "配置阶段完成以后的监听回调"
-
 }
 /**
  * gradle执行完毕的监听回调
