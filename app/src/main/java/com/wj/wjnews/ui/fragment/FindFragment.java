@@ -35,6 +35,16 @@ public class FindFragment extends BaseFragment {
         return rootView;
     }
 
+    @Override
+    public boolean getUserVisibleHint() {
+        return super.getUserVisibleHint();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
     private void initData() {
         nameList.add("集合");
         nameList.add("设计模式");

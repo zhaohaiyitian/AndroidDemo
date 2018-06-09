@@ -22,9 +22,6 @@ public class MineFragment extends BaseFragment {
     }
 
     private void showDialog() {
-        PromptDialog instance = PromptDialog.getInstance();
-        instance.setTitle("")
-                .setContent("")
-                .showDialog();
+
     }
 }
