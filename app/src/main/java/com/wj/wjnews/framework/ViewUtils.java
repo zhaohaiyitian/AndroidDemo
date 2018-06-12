@@ -37,7 +37,6 @@ public class ViewUtils {
     public static void inject(ViewFinder viewFinder, Object object) {
         injectField(viewFinder,object);
         injectEvent(viewFinder,object);
-
     }
 
     private static void injectEvent(ViewFinder viewFinder, Object object) {
@@ -60,7 +59,6 @@ public class ViewUtils {
                         view.setOnClickListener(new DeclaredOnClickListener(method,object,isCheckNet));
                     }
                 }
-
             }
         }
     }
