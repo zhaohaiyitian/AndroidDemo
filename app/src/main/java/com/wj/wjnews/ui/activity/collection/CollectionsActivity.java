@@ -1,12 +1,11 @@
 package com.wj.wjnews.ui.activity.collection;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.wj.wjnews.R;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
