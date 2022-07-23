@@ -5,4 +5,7 @@ package com.wj.wjnews.view.recycleview;
  */
 
 public class BetterRecyclerView {
+
+
+
 }
