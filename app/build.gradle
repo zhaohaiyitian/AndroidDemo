@@ -5,11 +5,11 @@ apply plugin: 'com.android.application'
 android {
     //compileSdkVersion rootProject.ext.android.compileSdkVersion
     compileSdkVersion mCompileSdkVersion.toInteger()
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '30.0.2'
     defaultConfig {
         applicationId "com.wj.wjnews"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
