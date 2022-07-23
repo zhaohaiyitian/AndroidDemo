@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WJNews.iml" filepath="$PROJECT_DIR$/WJNews.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dbgenerate/dbgenerate.iml" filepath="$PROJECT_DIR$/dbgenerate/dbgenerate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LearnAndroid.iml" filepath="$PROJECT_DIR$/.idea/modules/LearnAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/LearnAndroid.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/LearnAndroid.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dbgenerate/LearnAndroid.dbgenerate.iml" filepath="$PROJECT_DIR$/.idea/modules/dbgenerate/LearnAndroid.dbgenerate.iml" />
     </modules>
   </component>
 </project>
